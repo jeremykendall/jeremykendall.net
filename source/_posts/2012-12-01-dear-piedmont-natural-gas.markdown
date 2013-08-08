@@ -16,30 +16,28 @@ My wife and I recently moved to a suburb of Nashville, TN.  Through no fault of 
 
 > My wife and I moved to Hermitage, TN in late October 2012.  She called to have natural gas service transferred into our name the week of October 22.  Yesterday, November 30, our landlord got in touch with us to let us know the previous tenants had received a bill and we needed to touch base with you and take care of the problem.  Which we did.
 
-Here's the payment confirmation number: 5752712
-Here's the line item from my checking account's online system: 
-11/30/2012 Sign Debit* PIEDMONTNG/SPEEDPAY $70.15
+> * Here's the payment confirmation number: 5752712
+> * Here's the line item from my checking account's online system: 11/30/2012 Sign Debit* PIEDMONTNG/SPEEDPAY $70.15
 
-But guess what?  Our gas got cut off.
-
-And guess what else?  You won't turn it back on until Tuesday, December 4th.
-
-And guess what else? The representative my wife talked to yesterday afternoon told us the gas would *not* be cut off, that there wasn't an appointment to have it cut off, and that everything was taken care of.
-
-The best part? The gas was *already* cut off.  Before we called.  Before we were able to make payment.  Through no fault of our own.
-
-This is absolutely, completely and totally, 100% the fault of your company and your representatives at Piedmont Natural Gas.  
-
-It is wholly unacceptable that, after explaining our situation to your representative on the telephone this morning, you refuse to turn our gas back on.
-
-You and I both know you have the ability to send a truck out and have our gas turned back on.  You and I both know that you've done it for other customers in the past, and that you'll do it for other customers in the future.  I respectfully request that you do it for my wife and I now.
-
-This one is on you.  We did our part.  Now do yours and make this right today.
-
-Best,
-
-Jeremy Kendall
-
+> But guess what?  Our gas got cut off.
+> 
+> And guess what else?  You won't turn it back on until Tuesday, December 4th.
+> 
+> And guess what else? The representative my wife talked to yesterday afternoon told us the gas would **not** be cut off, that there wasn't an appointment to have it cut off, and that everything was taken care of.
+> 
+> The best part? The gas was **already** cut off.  Before we called.  Before we were able to make payment.  Through no fault of our own.
+> 
+> This is absolutely, completely and totally, 100% the fault of your company and your representatives at Piedmont Natural Gas.  
+> 
+> It is wholly unacceptable that, after explaining our situation to your representative on the telephone this morning, you refuse to turn our gas back on.
+> 
+> You and I both know you have the ability to send a truck out and have our gas turned back on.  You and I both know that you've done it for other customers in the past, and that you'll do it for other customers in the future.  I respectfully request that you do it for my wife and I now.
+> 
+> This one is on you.  We did our part.  Now do yours and make this right today.
+> 
+> Best,
+> 
+> Jeremy Kendall
 
 
 Piedmont, the ball is in your court.
@@ -52,11 +50,7 @@ _(I informed Piedmont that I would be making this complaint public here on my bl
 
 By yesterday at 10 am CST, I had spoken to Piedmont customer service, sent them an email, written this blog post, and pinged them on both their [Twitter account](https://twitter.com/PiedmontNG) and their [Facebook page](https://www.facebook.com/PiedmontNG).  I kept an eye on my phone, email, and social networks all day, finally giving up around 5 pm.  Finally, at 6:41 pm CST, almost three hours *after* Piedmont customer service closed for the weekend, I received [this reply via Twitter](https://twitter.com/PiedmontNG/status/275037051588599808):
 
-
-
-> Jeremy: I've made Customer Service aware of your blog so they can look into the situation. I'll let you know what I hear. ^JW
-
-
+{% tweet https://twitter.com/PiedmontNG/status/275037051588599808 %}
 
 Piedmont had six hours to touch base with us and resolve the problem.  I pinged them in every possible way, making what I felt was a reasonable request for restoration of services.  Rather than jumping on the problem and restoring our service, we were contacted after hours and told that customer service has been "made aware".  Thanks, but I'd already covered that one, and they won't be open until Monday morning anyhow.  Not impressed.
 

@@ -20,15 +20,8 @@ We recently began using SSL to connect to IMAP at work.  Prior to switching to S
 
 I figured that all I had to do was change my preferences in Mail Notification and select SSL.  Turns out I was right, except I couldn't select SSL - all of the "SSL/TSL" options were grayed out.  Why in the world would that be?  After some research I discovered that:
 
-
-
-
-  * SSL isn't available if the package was built without SSL support (makes sense)
-
-
-  * The OpenSSL license conflicts with the Debian license
-
-
+* SSL isn't available if the package was built without SSL support (makes sense)
+* The OpenSSL license conflicts with the Debian license
 
 Mail Notification _is_ available in the Ubuntu repository, but without SSL support.  Bummer.
 
@@ -39,29 +32,13 @@ The resolution is to build Mail Notification with SSL support enabled, but I qui
 **Dependencies Required**
 
 After a lot of troubleshooting and not a little frustration, I came up with a list of dependencies that I needed installed in order to configure and make Mail Notification 5.0 on Ubuntu Gutsy:
-
-
-
-
-
-  * build-essential
-
-
-  * gnome-core-devel
-
-
-  * libnotify-dev
-
-
-  * libgnome2-dev
-
-
-  * libgmime-2.0-2-dev
-
-
-  * libssl-dev
-
-
+  
+* build-essential
+* gnome-core-devel
+* libnotify-dev
+* libgnome2-dev
+* libgmime-2.0-2-dev
+* libssl-dev
 
 I used the Synaptic Package Manager to install each of these dependencies.  Read on if you're looking to troubleshoot a specific error that you're running into.
 
@@ -69,66 +46,49 @@ I used the Synaptic Package Manager to install each of these dependencies.  Read
 
 The first time I ran  
     
-    $ ./configure
+```bash
+$ ./configure
+```
 
 I got this error:
 
-    
-    checking for C compiler default output file name... 
-    configure: error: C compiler cannot create executables
-    See `config.log' for more details.
-
-
+```bash
+checking for C compiler default output file name... 
+configure: error: C compiler cannot create executables
+See `config.log' for more details.
+```
 
 Installing **build-essential** took care of the C compiler issue, but I found a new one the next time I ran configure:
 
-    
-    Error: checking for GNOME... no
-    configure: error: unable to find the GNOME libraries
+```bash
+Error: checking for GNOME... no
+configure: error: unable to find the GNOME libraries
+```
 
-
-
-This one drove me a little batty.  What does it mean it can't find the GNOME libraries?  I'm running GNOME for Pete's sake!  After a decent amount of hair pulling and a seemingly endless amount of Googling, I finally found that **gnome-core-devel**, **libnotify-dev**, and **libgnome2-dev** resolved the 
-    
-    unable to find the GNOME libraries
-
-error.
+This one drove me a little batty.  What does it mean it can't find the GNOME libraries?  I'm running GNOME for Pete's sake!  After a decent amount of hair pulling and a seemingly endless amount of Googling, I finally found that **gnome-core-devel**, **libnotify-dev**, and **libgnome2-dev** resolved the `unable to find the GNOME libraries` error.
 
 Next up was the GMIME error:
 
-    
-    checking for GMIME... configure: error: Package requirements (gmime-2.0 >= 2.1.0) were not met:
-    
-    No package 'gmime-2.0' found
+```bash
+checking for GMIME... configure: error: Package requirements (gmime-2.0 >= 2.1.0) were not met:
+No package 'gmime-2.0' found
+```
 
-
-
-At least by now I was making it most of the way through the 
-    
-    configure
-
-process.  I found that installing **libgmime-2.0-2-dev** resolved the issue, finally allowing me to complete the configuration.
+At least by now I was making it most of the way through the `configure` process.  I found that installing **libgmime-2.0-2-dev** resolved the issue, finally allowing me to complete the configuration.
 
 Of course, the whole point was to build Mail Notify with SSL support.  What do you think I found when configure finally ran all of the way through?  Down at the bottom of the options list, I saw this:
 
-    
-    --enable-ssl                 no (OpenSSL not found)
-
-
+```bash
+--enable-ssl                 no (OpenSSL not found)
+```
 
 By now, I had started seeing a pattern: look up the dependencies, find their dev libraries, install their dev libraries, and voila, on to the next issue.  With that in mind, I installed **libssl-dev** and ran 
     
-    $ ./configure
+```bash
+$ ./configure
+```
 
-one last time.  Mail Notify configured without errors and with SSL support.  A quick 
-    
-    make
-
-and 
-    
-    make install
-
-later and I had a Mail Notify 5.0 installation complete with SSL support.
+one last time.  Mail Notify configured without errors and with SSL support.  A quick `make` and `make install` later and I had a Mail Notify 5.0 installation complete with SSL support.
 
 **Other Options**
 

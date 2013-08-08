@@ -17,9 +17,9 @@ tags:
 
 **The Problem**
 
-I've been having trouble with my AT&T; DSL installation here at the new place.  My internet connection will come and go, seemingly at random, and for random amounts of time.  I [tweeted about it](http://twitter.com/JeremyKendall/status/5193232511) once already, hoping that sharing my frustration with the world might make me feel a little better.  Nope.  Didn't work.
+I've been having trouble with my AT&T DSL installation here at the new place.  My internet connection will come and go, seemingly at random, and for random amounts of time.  I [tweeted about it](http://twitter.com/JeremyKendall/status/5193232511) once already, hoping that sharing my frustration with the world might make me feel a little better.  Nope.  Didn't work.
 
-I've had this problem before with AT&T;, when I got DSL installed at my last place.  Things were rough for a while, and then somehow they seemed to straighten out on their own.  I'm not crossing my fingers that I'll have such luck again.
+I've had this problem before with AT&T, when I got DSL installed at my last place.  Things were rough for a while, and then somehow they seemed to straighten out on their own.  I'm not crossing my fingers that I'll have such luck again.
 
 **What's Really Going On?**
 
@@ -27,11 +27,11 @@ I decided to try and log the bounces so that I could get a better feel for what 
 
 
     
-    
+```perl 
     #!/usr/bin/perl
     
     #
-    # Test AT&T; DSL connectivity. If network is down, log to file
+    # Test AT&T DSL connectivity. If network is down, log to file
     # Will use log info as ammo when I call tech support.
     #
     
@@ -83,9 +83,7 @@ I decided to try and log the bounces so that I could get a better feel for what 
     }
     
     $p->close();
-    
-
-
+``` 
 
 **Code Review**
 
@@ -196,6 +194,6 @@ Weak sauce, man.  Weak sauce.
 
 **Wrapping Up**
 
-Having this script handy doesn't make the [fail](http://failblog.org/) any better, but at least I know a little more about what's happening.  I'd like to think it'll give me some leverage when I try to get this worked out with AT&T;, but who knows.  I'll let you know how it goes.
+Having this script handy doesn't make the [fail](http://failblog.org/) any better, but at least I know a little more about what's happening.  I'd like to think it'll give me some leverage when I try to get this worked out with AT&T, but who knows.  I'll let you know how it goes.
 
 [**Update**: post title change to better reflect content]

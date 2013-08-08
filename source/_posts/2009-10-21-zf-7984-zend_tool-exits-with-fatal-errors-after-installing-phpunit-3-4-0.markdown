@@ -21,7 +21,7 @@ One of the topics that I'm most interested in is unit testing, specifically unit
 In preparation to dig into ZF unit testing, I updated my install of [PHPUnit](http://www.phpunit.de/) to the latest version (currently 3.4.1, installed via [PEAR](http://pear.php.net/)).  When I tried to create a new ZF project using [Zend_Tool](http://framework.zend.com/manual/en/zend.application.quick-start.html#zend.application.quick-start.zend-tool), I received the following error:
 
     
-    
+```bash 
     jkendall@san-diego:~/dev/www$ zf create project asplode
     
     Fatal error: Cannot redeclare class phpunit_framework_testsuite_dataprovider in /usr/share/php/PHPUnit/Framework/TestSuite/DataProvider.php on line 64
@@ -37,9 +37,7 @@ In preparation to dig into ZF unit testing, I updated my install of [PHPUnit](ht
         0.4100    2729736   8. include_once('/usr/share/php/PHPUnit/Framework/TestSuite/DataProvider.php') /usr/share/phplib/ZendFramework-1.9.3PL1/library/Zend/Tool/Framework/Loader/Abstract.php:90
     
     jkendall@san-diego:~/dev/www$
-    
-
-
+``` 
 
 As it turns out, this is a known bug in version 1.9.0+ of the Zend Framework.  See [ZF-7894](http://framework.zend.com/issues/browse/ZF-7894) in the ZF issue tracker for full details.  While this issue is not yet resolved in the tracker, [Raphael Stolt](http://raphaelstolt.blogspot.com/) has [provided a workaround](http://framework.zend.com/issues/browse/ZF-7894?focusedCommentId=34826&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#action_34826) in the form of a diff file attached to the issue.  While your mileage may vary, the patch worked perfectly for me.  I'm able to go ahead and dive into unit testing my Zend Framework applications.
 

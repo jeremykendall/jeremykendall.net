@@ -24,57 +24,37 @@ It can be really challenging for the new guy to get from zero to a Zend Framewor
 
 Here's what we're going to do:
 
-
-
-	
-  * Install the Zend Framework
-
-	
-  * Get Zend Tool up and running
-
-	
-  * Create a new Zend Framework project
-
-	
-  * Get an virtual host up and running
-
-	
-  * Celebrate victory!
-
+* Install the Zend Framework
+* Get Zend Tool up and running
+* Create a new Zend Framework project
+* Get an virtual host up and running
+* Celebrate victory!
 
 **Disclaimer**
 
-While I'm going try to stay true to my "Zero to Zend Framework Project" thesis, I am making a few assumptions.  This tutorial is written for [Ubuntu](http://www.ubuntu.com/), [PHP 5](http://php.net/), and [Apache](http://httpd.apache.org/). While I'd love to be able to address Windows, Mac, and other *nix distros, I can only share what I know.  I'm also assuming PHP 5 (PHP 5.2.4 at minimum) and Apache are both installed and functioning correctly, and Apache's [mod_rewrite](http://httpd.apache.org/docs/2.0/mod/mod_rewrite.html) module is up and running.  If that's not the case, please refer to the resources section at the end of this post to find instructions on getting everything ready to go.
+While I'm going try to stay true to my "Zero to Zend Framework Project" thesis, I am making a few assumptions.  This tutorial is written for [Ubuntu](http://www.ubuntu.com/), [PHP 5](http://php.net/), and [Apache](http://httpd.apache.org/). While I'd love to be able to address Windows, Mac, and other \*nix distros, I can only share what I know.  I'm also assuming PHP 5 (PHP 5.2.4 at minimum) and Apache are both installed and functioning correctly, and Apache's [mod_rewrite](http://httpd.apache.org/docs/2.0/mod/mod_rewrite.html) module is up and running.  If that's not the case, please refer to the resources section at the end of this post to find instructions on getting everything ready to go.
 
 **Installing the Zend Framework**
 
 Installing the Zend Framework is as easy as downloading a .zip or .tar.gz file (your choice) and extracting the contents onto your machine.
 
-
-
-	
-  * Create a directory named phplib in your home folder.
-
-	
-  * Head over to [Zend Framework: Downloads](http://framework.zend.com/download/latest) and download Zend Framework <version_num> Full.
-
-	
-  * Double click on the downloaded file, choose "Extract," navigate to the phplib directory, and click "Extract."
-
+* Create a directory named phplib in your home folder.
+* Head over to [Zend Framework: Downloads](http://framework.zend.com/download/latest) and download Zend Framework <version_num> Full.
+* Double click on the downloaded file, choose "Extract," navigate to the phplib directory, and click "Extract."
 
 As of this writing, the most recent version of the Zend Framework is 1.10.3, so the full path to my Zend Framework installation would be
 
-    
+```    
     /home/jkendall/phplib/ZendFramework-1.10.3
-
+```
 
 **IMPORTANT**: Make sure that you downloaded Zend Framework <version_num> Full.  That will be important later.
 
 **TIP**: As new versions of the framework are released, I like to be able to switch between them easily.  I always make a [soft link (symbolic link, symlink)](http://en.wikipedia.org/wiki/Symbolic_link) to the latest release and name it Zend.  You can either right-click on the ZendFramework-1.10.3 folder and select "Make Link" (make sure to name the link "Zend"), or create a soft link from the command line like so:
 
-    
+```bash    
     ~/phplib/ZendFramework-1.10.3$ ln -s ZendFramework-1.10.3 Zend
-
+```
 
 When a new version of the framework is released, I install the new version to its own folder and switch the soft link to target the directory containing the latest release.  That can come in handy down the road.
 
@@ -90,29 +70,29 @@ Now we're getting to the good stuff.  First, head back to your home directory a
 
 Next, cd into the public_html directory and execute the following command:
 
-    
+```bash  
     ~/public_html$ zf create project ZeroToZF
-
+```
 
 That's all there is to it!  You've got your project structure in place, a default IndexController and ErrorController, your application config, the necessary view scripts, etc (See the [Zend Application Quick Start](http://framework.zend.com/manual/en/zend.application.quick-start.html) for full rundown of what got created.).
 
 **IMPORTANT**: While the full project structure is now in place, the Zend Framework **is not included in your project for you**.  Deciding how the framework should be included in the project is up to the developer.  I like to copy the library out of the Zend Framework install folder into the application's library folder.  In our example, I would copy
 
-    
+```    
     /home/jkendall/phplib/ZendFramework-1.10.3/library/Zend
-
+```
 
 into
 
-    
+```  
     /home/jkendall/public_html/ZeroToZF/library
-
+```
 
 When done properly, the full path to Zend/Log.php in your application should be
 
-    
+```  
     /home/<username>/public_html/ZeroToZF/library/Zend/Log.php
-
+```
 
 Sweet!  We're almost there.
 
@@ -126,61 +106,61 @@ If you have not done so already, open the terminal application (Applications -> 
 
 After using the command line to cd into `/etc/apache2/sites-available`, execute the following command to create your own vhost file:
 
-    
+```  
     /etc/apache2/sites-available$ gksudo gedit ZeroToZf.local
-
+```
 
 The file extension isn't important, a lot of people use .conf, but I like to use .local for sites hosted locally.
 
 Once you've got gedit open, the file's contents should look like this:
 
-    
+```  
     <VirtualHost *:80>
             ServerName zerotozf.local
             DocumentRoot /home/jkendall/public_html/ZeroToZF/public
     </VirtualHost>
-
+```
 
 Of course, jkendall should be replaced by your username.
 
 Next we need to make your new virtual host file available to Apache.  You can do that by executing
 
-    
+```  
     /etc/apache2/sites-available$ sudo a2ensite ZeroToZF.local
-
+```
 
 If everything worked properly, you should see the following message:
 
-    
+```    
     Enabling site ZeroToZF.local.
     Run '/etc/init.d/apache2 reload' to activate new configuration!
-
+```
 
 Next, edit your `/etc/hosts` file by adding `zerotozf.local` like so:
 
-    
+```  
     /etc/apache2/sites-available$ gksudo gedit /etc/hosts
-
+```
 
 Add the following line below the entry for localhost
 
-    
+```  
     127.0.0.1 zerotozf.local
-
+```
 
 **NOTE**: When adding a host to /etc/hosts, the case of the hostname is not important.  I like to add hostnames in lowercase, but you can add it as ZeroToZF.local if you like.
 
 Save the file, close gedit, and execute
 
-    
+```  
     /etc/apache2/sites-available$ sudo /etc/init.d/apache2 reload
-
+```
 
 You should see the message
 
-    
+```bash  
     * Reloading web server config apache2                                          [ OK ]
-
+```
 
 Open up your browser and visit [http://zerotozf.local](http://zerotozf.local).  You should see the Zend Framework welcome screen.
 
@@ -194,33 +174,16 @@ Now that you've got your first project up and running, you're probably going to 
 
 Getting started with the Zend Framework was a challenging proposition for me.  Just getting to the point where I could start working on a project was sometimes maddening as a result of all the steps involved, many of which had nothing to do with the framework, at least not directly.  I've tried, hopefully successfully, to lay out all the steps you might need to get from zero to a Zend Framework project in (about) 10 minutes.
 
-Working with the Zend Framework has been a rich and rewarding experience for me.  I've learned _almost_ everything I know about best practices, object oriented programming, *nix, and Apache (to name just a few) as a direct or indirect result of the Zend Framework.  I wouldn't have been able to do that without the help of the Zend Framework community.  I won't name names, as I'm sure to unintentionally leave out some great folks, so I'll throw you a link to the [Zend Framework Community Forum](http://n4.nabble.com/Zend-Framework-Community-f634137.html).  Head over there when you've got a Zend Framework problem you just can't solve on your own.  You'll meet some great folks and learn a lot in the process.  They've saved my bacon more than once.
+Working with the Zend Framework has been a rich and rewarding experience for me.  I've learned _almost_ everything I know about best practices, object oriented programming, \*nix, and Apache (to name just a few) as a direct or indirect result of the Zend Framework.  I wouldn't have been able to do that without the help of the Zend Framework community.  I won't name names, as I'm sure to unintentionally leave out some great folks, so I'll throw you a link to the [Zend Framework Community Forum](http://n4.nabble.com/Zend-Framework-Community-f634137.html).  Head over there when you've got a Zend Framework problem you just can't solve on your own.  You'll meet some great folks and learn a lot in the process.  They've saved my bacon more than once.
 
 If I've left out any steps or made some egregious error, please let me know in the comments.  I'll be grateful and post updates and corrections as soon as possible.
 
 **Resources**
 
-
-
-	
-  * How to [install PHP in Ubuntu](https://help.ubuntu.com/9.10/serverguide/C/php5.html)
-
-	
-  * How to [install Apache in Ubuntu](https://help.ubuntu.com/9.10/serverguide/C/httpd.html)
-
-	
-  * [Enabling mod_rewrite](http://www.ghacks.net/2009/12/05/enable-mod_rewrite-in-a-ubuntu-server/)
-
-	
-  * A great [bash aliases](http://www.sucka.net/2009/09/ubuntu-command-line-tip-1-%E2%80%93-aliases/) tutorial for Ubuntu
-
-	
-  * Setting up [Zend Tool on Windows](http://www.armando.ws/2009/05/how-to-set-up-zend_tool-on-windows/comment-page-1/)
-
-	
-  * The [Zend Framework Community Forum](http://n4.nabble.com/Zend-Framework-Community-f634137.html) on Nabble
-
-        
-  * [Getting Started with Zend Framework](http://akrabat.com/zend-framework-tutorial/) by Rob Allen
-
-
+* How to [install PHP in Ubuntu](https://help.ubuntu.com/9.10/serverguide/C/php5.html)
+* How to [install Apache in Ubuntu](https://help.ubuntu.com/9.10/serverguide/C/httpd.html)
+* [Enabling mod_rewrite](http://www.ghacks.net/2009/12/05/enable-mod_rewrite-in-a-ubuntu-server/)
+* A great [bash aliases](http://www.sucka.net/2009/09/ubuntu-command-line-tip-1-%E2%80%93-aliases/) tutorial for Ubuntu
+* Setting up [Zend Tool on Windows](http://www.armando.ws/2009/05/how-to-set-up-zend_tool-on-windows/comment-page-1/)
+* The [Zend Framework Community Forum](http://n4.nabble.com/Zend-Framework-Community-f634137.html) on Nabble
+* [Getting Started with Zend Framework](http://akrabat.com/zend-framework-tutorial/) by Rob Allen

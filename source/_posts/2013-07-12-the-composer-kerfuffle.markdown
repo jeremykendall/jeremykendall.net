@@ -13,11 +13,7 @@ categories:
 
 Wednesday night I discovered, much to my shock and dismay, that [Composer](http://getcomposer.org/)'s install command now defaults to installing development dependencies along with a project's required dependencies.  That discovery prompted me to start a "[small twitter shitstorm](http://seld.be/notes/composer-installing-require-dev-by-default)" with [this tweet](https://twitter.com/jeremykendall/status/355148025393446913):
 
-
-
-> "Since when does 'composer install' install dev dependencies by default?  I know 'composer update' does that, but install? /cc [@seldaek](https://twitter.com/seldaek)"
-
-
+{% tweet https://twitter.com/jeremykendall/status/355148025393446913 %}
 
 Before I delve into why I'm shocked and dismayed, I want to say a few things about Composer and the Composer team.  In all of my years of programming in PHP, I'm not sure there's been a more important, more game changing, or more exciting project than Composer.  Being able to easily manage project dependencies has revolutionized the way I develop.  Composer, and the related [packagist.org](https://packagist.org/), have been a larger quality-of-life improvement for me than any other tool I've added to my toolkit over the years.  I'd like to extend my sincerest thanks to [Nils Adermann](http://naderman.de/), [Jordi Boggiano](http://nelm.io/jordi) and the many [community contributors](https://github.com/composer/composer/graphs/contributors) who have worked so hard and so diligently to make Composer a reality.
 

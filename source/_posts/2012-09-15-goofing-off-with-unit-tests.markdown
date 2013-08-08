@@ -22,31 +22,63 @@ tags:
 
 Sometime last year I saw a unit test for the song "[Ice Cream Paint Job](http://www.youtube.com/watch?v=0yfArN-e2OU)".  I thought it was hilarious, and I hate I've never been able to find it again.  I liked it so much, in fact, I decided to write my own musical <del>unit</del> integration test.  Behold the MelissaTest, a short, simple test covering the main premise of "[Melissa](http://www.youtube.com/watch?v=OVVvVFmoHnE)".  Bonus points for me: [_the test passes_](https://github.com/jeremykendall/mercyful-fate).  Enjoy.
 
-
-    
-    
-    king = new KingDiamond();
-            $this->priest = new Priest();
-            $this->priest->attach($this->king);
-            $this->witch = new WitchMelissa();
-            $this->trackMelissa = new TrackMelissa($this->king, $this->witch, $this->priest);
-        }
-        
-        protected function tearDown()
-        {
-            $this->trackMelissa = null;
-        }
-    
-        public function testBurnMelissa()
-        {
-            $this->assertFalse($this->witch->isBurned());
-            $this->assertFalse($this->king->swearsRevenge());
-    
-            $this->trackMelissa->priestBurnsWitch();
-            
-            $this->assertTrue($this->witch->isBurned());
-            $this->assertTrue($this->king->swearsRevenge());
-        }
-    
+```php
+<?php
+ 
+namespace MercyfulFate\Album\Melissa\Track;
+ 
+use MercyfulFate\KingDiamond;
+use MercyfulFate\Priest;
+use MercyfulFate\Witch\Melissa as WitchMelissa;
+use MercyfulFate\Album\Melissa\Track\Melissa as TrackMelissa;
+ 
+class MelissaTest extends \PHPUnit_Framework_TestCase
+{
+ 
+    /**
+     * @var MercyfulFate\KingDiamond
+     */
+    protected $king;
+ 
+    /**
+     * @var MercyfulFate\Priest
+     */
+    protected $priest;
+ 
+    /**
+     * @var MercyfulFate\Witch\Melissa
+     */
+    protected $witch;
+ 
+    /**
+     * @var MercyfulFate\Album\Melissa\Track\Melissa
+     */
+    protected $trackMelissa;
+ 
+    protected function setUp()
+    {
+        $this->king = new KingDiamond();
+        $this->priest = new Priest();
+        $this->priest->attach($this->king);
+        $this->witch = new WitchMelissa();
+        $this->trackMelissa = new TrackMelissa($this->king, $this->witch, $this->priest);
     }
-    
+ 
+    protected function tearDown()
+    {
+        $this->trackMelissa = null;
+    }
+ 
+    public function testBurnMelissa()
+    {
+        $this->assertFalse($this->witch->isBurned());
+        $this->assertFalse($this->king->swearsRevenge());
+ 
+        $this->trackMelissa->priestBurnsWitch();
+ 
+        $this->assertTrue($this->witch->isBurned());
+        $this->assertTrue($this->king->swearsRevenge());
+    }
+ 
+}
+```

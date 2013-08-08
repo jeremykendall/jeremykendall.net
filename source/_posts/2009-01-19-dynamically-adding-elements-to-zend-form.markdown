@@ -14,6 +14,8 @@ tags:
 - zend framework
 ---
 
+> **UPDATE**: This post is now more than 4 1/2 years old and the information is woefully out of date. I do not plan to update the code for any newer versions of Zend Framework.
+
 There have been some requests on the Zend Framework mailing lists for information on how to dynamically add elements to Zend_Form.  This is something that I've been looking into myself, and I'd like to share what I've come up with.
 
 Please note that this code is a proof of concept / request for peer review detailing the work that I've done to date, and not an example of what I might consider the best way to address this use case.  Special thanks go to [Cory Wiles](http://www.corywiles.com/home/) who helped me think things through when I first started giving this a go.
@@ -34,100 +36,88 @@ The action controller contains the action that displays the form, and it also ha
 
 Let's start with the code for the form.  The most important item here is that each form element has its order property set.  You can see the huge jump in the order between the "name" element and the  "addElement" button.  This gap occurs so the dynamic elements can be placed exactly where I want them and so they'll maintain their position in the form once they've been added to the form object.
 
-
+```php
+public function init() {
     
+    $this->addElement('hidden', 'id', array(
+    'value' => 1
+    ));
     
-    public function init() {
-    	
-      $this->addElement('hidden', 'id', array(
-        'value' => 1
-      ));
-      
-      $this->addElement('text', 'name', array(
-        'required' => true,
-        'label'    => 'Name',
-        'order'    => 2,
-      ));
-      
-      $this->addElement('button', 'addElement', array(
-        'label' => 'Add',
-        'order' => 91
-      ));
-      
-      $this->addElement('button', 'removeElement', array(
-        'label' => 'Remove',
-        'order' => 92
-      ));
-      
-      // Submit
-      $this->addElement('submit', 'submit', array(
-        'label' => 'Submit',
-        'order' => 93
-      ));
-    }
+    $this->addElement('text', 'name', array(
+    'required' => true,
+    'label'    => 'Name',
+    'order'    => 2,
+    ));
     
-
-
+    $this->addElement('button', 'addElement', array(
+    'label' => 'Add',
+    'order' => 91
+    ));
+    
+    $this->addElement('button', 'removeElement', array(
+    'label' => 'Remove',
+    'order' => 92
+    ));
+    
+    // Submit
+    $this->addElement('submit', 'submit', array(
+    'label' => 'Submit',
+    'order' => 93
+    ));
+}
+```
 
 **Action Controller**
 
 The action that displays the form is straightforward.  If you've ever done any work with Zend_Form, I'm sure you recognize what's going on here.  The only thing to note is the $form->preValidation() method.  That's where the magic happens.  We'll get to that in a bit.
 
+```php
+/**
+ * Shows the dynamic form demonstration page
+ */
+public function dynamicFormElementsAction() {
+    
+    $form = new Code_Form_Dynamic();
+    
+    // Form has not been submitted - pass to view and return
+    if (!$this->getRequest()->isPost()) {
+    $this->view->form = $form;
+    return;
+    }
 
+    // Form has been submitted - run data through preValidation()
+    $form->preValidation($_POST);
     
-    
-    /**
-     * Shows the dynamic form demonstration page
-     */
-    public function dynamicFormElementsAction() {
-    	
-      $form = new Code_Form_Dynamic();
-      
-      // Form has not been submitted - pass to view and return
-      if (!$this->getRequest()->isPost()) {
-        $this->view->form = $form;
-        return;
-      }
-    
-       // Form has been submitted - run data through preValidation()
-      $form->preValidation($_POST);
-      
-       // If the form doesn't validate, pass to view and return
-      if (!$form->isValid($_POST)) {
-        $this->view->form = $form;
-        return;
-      }
-      
-       // Form is valid
-      $this->view->form = $form;
+    // If the form doesn't validate, pass to view and return
+    if (!$form->isValid($_POST)) {
+    $this->view->form = $form;
+    return;
     }
     
-
-
+    // Form is valid
+    $this->view->form = $form;
+}
+``` 
 
 Next comes the controller's newfieldAction().  This action utilizes the AjaxContext action helper to pass the new field's markup back to the form view.
 
-
+```php
+/**
+ * Ajax action that returns the dynamic form field
+ */
+public function newfieldAction() {
     
+    $ajaxContext = $this->_helper->getHelper('AjaxContext');
+    $ajaxContext->addActionContext('newfield', 'html')->initContext();
     
-    /**
-     * Ajax action that returns the dynamic form field
-     */
-    public function newfieldAction() {
-      
-      $ajaxContext = $this->_helper->getHelper('AjaxContext');
-      $ajaxContext->addActionContext('newfield', 'html')->initContext();
-      
-      $id = $this->_getParam('id', null);
-      
-      $element = new Zend_Form_Element_Text("newName$id");
-      $element->setRequired(true)->setLabel('Name');
-      
-      $this->view->field = $element->__toString();
-    }
+    $id = $this->_getParam('id', null);
     
-
-
+    $element = new Zend_Form_Element_Text("newName$id");
+    $element->setRequired(true)->setLabel('Name');
+    
+    $this->view->field = $element->__toString();
+}
+```
 
 **jQuery**
 
@@ -137,76 +127,70 @@ The ajaxAddField method makes a post request to the newfieldAction using [jQuery
 
 The removeField method finds the last element in the page with the class dynamic, removes it, then decrements the current ID and stores the new value in the hidden ID element.
 
+```javascript
+<script type="text/javascript">
 
+$(document).ready(function() {
     
-    
-    <script type="text/javascript">
-    
-    $(document).ready(function() {
-      
-      $("#addElement").click( 
-          function() { 
-              ajaxAddField();
-           }
-        );
-      
-      $("#removeElement").click(
-          function() {
-              removeField();
-          }
-        );
-      }
+    $("#addElement").click( 
+        function() { 
+            ajaxAddField();
+        }
     );
     
-    // Get value of id - integer appended to dynamic form field names and ids
-    var id = $("#id").val();
-    
-    // Retrieve new element's html from controller
-    function ajaxAddField() {
-      $.ajax(
-        {
-          type: "POST",
-          url: "<?=$this->url(array('action' => 'newfield', 'format' => 'html'));?>",
-          data: "id=" + id,
-          success: function(newElement) {
-            
-            // Insert new element before the Add button
-            $("#addElement-label").before(newElement);
-            
-            // Increment and store id
-            $("#id").val(++id);
-          }
+    $("#removeElement").click(
+        function() {
+            removeField();
         }
-      );
+    );
     }
-    
-    function removeField() {
-    
-      // Get the last used id
-      var lastId = $("#id").val() - 1;
-    
-      // Build the attribute search string.  This will match the last added  dt and dd elements.  
-      // Specifically, it matches any element where the id begins with 'newName<int>-'.
-      searchString = '*[id^=newName' + lastId + '-]';
-    
-      // Remove the elements that match the search string.
-      $(searchString).remove()
-    
-      // Decrement and store id
-      $("#id").val(--id);
+);
+
+// Get value of id - integer appended to dynamic form field names and ids
+var id = $("#id").val();
+
+// Retrieve new element's html from controller
+function ajaxAddField() {
+    $.ajax(
+    {
+        type: "POST",
+        url: "<?=$this->url(array('action' => 'newfield', 'format' => 'html'));?>",
+        data: "id=" + id,
+        success: function(newElement) {
+        
+        // Insert new element before the Add button
+        $("#addElement-label").before(newElement);
+        
+        // Increment and store id
+        $("#id").val(++id);
+        }
     }
-    </script>
-    
+    );
+}
 
+function removeField() {
 
+    // Get the last used id
+    var lastId = $("#id").val() - 1;
+
+    // Build the attribute search string.  This will match the last added  dt and dd elements.  
+    // Specifically, it matches any element where the id begins with 'newName<int>-'.
+    searchString = '*[id^=newName' + lastId + '-]';
+
+    // Remove the elements that match the search string.
+    $(searchString).remove()
+
+    // Decrement and store id
+    $("#id").val(--id);
+}
+</script>
+```    
 
 **Zend_Form: preValidation() and addNewField()**
 
 Now on to the fun stuff.  All of the code up to this point is present to support what happens in the form's preValidation() method.  Remember that preValidation() is called after the form has been submitted but before the form is validated.  preValidation() searches through the submitted form's data for new fields.  If it finds any new fields, it calls addNewField() and adds the new fields to the form object.  By adding the new form fields to the form object before validation, any filters and validators attached to the new fields will be run as if those fields had always existed in the form object.
 
-
-    
-    
+```php
     /**
      * After post, pre validation hook
      * 
@@ -251,13 +235,7 @@ Now on to the fun stuff.  All of the code up to this point is present to suppor
         'order'          => $order
       ));
     }
-    
-
-
-
-**Live Example**
-
-If you'd like to see working version of this proof of concept, please visit [the live example](http://code.jeremykendall.net/forms/dynamic-form-elements) at code.jeremykendall.net.
+``` 
 
 **Summary**
 
@@ -272,49 +250,18 @@ If you've made it this far, I'm grateful to you for hanging in with me.  If you
 **Full Controller, Form, and View Code**
 
 If you're interested in the complete code for the controller, form, and views, I've posted them over at pastebin.  Follow the links below to view / grab the code.
-
-
-
 	
-  * [Action Controller (FormsController)
-](http://jeremykendall.pastebin.com/f675a1ec1)
-
-	
-  * [Form (Code_Form_Dynamic)
-](http://jeremykendall.pastebin.com/f5d408d7b)
-
-	
-  * [Form view (dynamic-form-elements.phtml)
-](http://jeremykendall.pastebin.com/f56ccb1f7)
-
-	
-  * [Ajax view (newfield.ajax.phtml)
-](http://jeremykendall.pastebin.com/f423d0ee3)
-
+* [Action Controller (FormsController)](http://jeremykendall.pastebin.com/f675a1ec1)
+* [Form (Code_Form_Dynamic)](http://jeremykendall.pastebin.com/f5d408d7b)
+* [Form view (dynamic-form-elements.phtml)](http://jeremykendall.pastebin.com/f56ccb1f7)
+* [Ajax view (newfield.ajax.phtml)](http://jeremykendall.pastebin.com/f423d0ee3)
 
 **Further reading:**
-
-
-
 	
   * [Zend_Form](http://framework.zend.com/manual/en/zend.form.html)
-
-	
   * [Zend_Form Decorators](http://framework.zend.com/manual/en/zend.form.elements.html#zend.form.elements.decorators)
-
-	
   * [AjaxContext Action Helper](http://framework.zend.com/manual/en/zend.controller.actionhelpers.html#zend.controller.actionhelpers.contextswitch)
-
-	
   * [jQuery JavaScript Library](http://jquery.com/)
-
-	
   * [jQuery Events/click](http://docs.jquery.com/Events/click)
-
-	
   * [jQuery Manipulation/append](http://docs.jquery.com/Manipulation/append)
-
-	
   * [jQuery Manipulation/remove](http://docs.jquery.com/Manipulation/remove)
-
-

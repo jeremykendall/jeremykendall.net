@@ -18,38 +18,15 @@ One of my favorite sessions at this year's tek-X was the [Community Roundtable](
 
 **The Details**
 
-
-
-	
-  * Memphis PHP will meet on the **4th Thursday** of every month at 6:30pm (currently searching for a suitable location).
-
-	
-  * Memphis PHP uses [Meetup.com](http://www.meetup.com/memphisPHP) for membership,  event and meeting announcements, RSVPs, etc.
-
-	
-  * Our first event will be a [road trip to  Nashville](http://www.meetup.com/memphisPHP/calendar/13578277/) on June 8th to visit the Nashville PHP user group.
-
-	
-  * Our [first  official meeting](http://www.meetup.com/memphisPHP/calendar/13573568/) will be on June 24th, location and speaker/agenda  TBA.
-
-	
-  * Follow [@MemphisPHP](http://twitter.com/MemphisPHP) on Twitter for community updates and the like.[](http://twitter.com/MemphisPHP)
-
-	
+* Memphis PHP will meet on the **4th Thursday** of every month at 6:30pm (currently searching for a suitable location).
+* Memphis PHP uses [Meetup.com](http://www.meetup.com/memphisPHP) for membership,  event and meeting announcements, RSVPs, etc.
+* Our first event will be a [road trip to  Nashville](http://www.meetup.com/memphisPHP/calendar/13578277/) on June 8th to visit the Nashville PHP user group.
+* Our [first  official meeting](http://www.meetup.com/memphisPHP/calendar/13573568/) will be on June 24th, location and speaker/agenda  TBA.
+* Follow [@MemphisPHP](http://twitter.com/MemphisPHP) on Twitter for community updates and the like.[](http://twitter.com/MemphisPHP)
     * If you're on Twitter and would like to be added to the [memphisPHP-devs](http://twitter.com/MemphisPHP/memphisphp-devs) list, let me know.
-
-	
     * Our official hashtag is [#memphisPHP](http://twitter.com/#search?q=%23memphisPHP).
-
-
-
-
-	
-  * Our general discussion group and mailing list is hosted at [Google Groups](http://groups.google.com/group/memphis-php)
-
-	
-  * Employers and recruiters are more than welcome to post opportunities to our discussion list. Please  read the guidelines for [Posting  Employment Opportunities](http://groups.google.com/group/memphis-php/web/posting-employment-opportunities?_done=%2Fgroup%2Fmemphis-php%3F) first.
-
+* Our general discussion group and mailing list is hosted at [Google Groups](http://groups.google.com/group/memphis-php)
+* Employers and recruiters are more than welcome to post opportunities to our discussion list. Please  read the guidelines for [Posting  Employment Opportunities](http://groups.google.com/group/memphis-php/web/posting-employment-opportunities?_done=%2Fgroup%2Fmemphis-php%3F) first.
 
 Welcome to Memphis PHP!  I hope you'll join me in making Memphis PHP a huge success.
 
