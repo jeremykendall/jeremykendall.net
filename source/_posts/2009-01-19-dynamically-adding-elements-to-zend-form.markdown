@@ -1,5 +1,5 @@
 ---
-author: admin
+author: "Jeremy Kendall"
 comments: true
 date: 2009-01-19 17:44:56+00:00
 layout: post
