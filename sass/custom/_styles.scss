@@ -1,0 +1,14 @@
+// This File is imported last, and will override other styles in the cascade
+// Add styles here to make changes without digging in too much
+@import "font-awesome/font-awesome";
+
+ul.social-links {
+    text-align: center;
+    word-spacing: 15px;
+    li {
+        display: inline;
+        a {
+            text-decoration: none;
+        }
+    }
+}
