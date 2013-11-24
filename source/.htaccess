@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^www\.jeremykendall\.net$ [NC]   
+RewriteRule ^(.*)$ http://jeremykendall.net/$1 [R=301]
+RewriteRule ^feed/?$ http://jeremykendall.net/atom.xml [R=301,L]
