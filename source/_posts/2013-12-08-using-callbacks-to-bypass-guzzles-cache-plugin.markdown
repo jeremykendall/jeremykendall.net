@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Bypassing Guzzle Cache: CallbackCanCacheStrategy"
-date: 2013-12-07 00:36
+title: "Using Callbacks To Bypass Guzzle's Cache Plugin"
+date: 2013-12-08 14:43:48 -0600
 comments: true
 categories: ["Guzzle", "caching"]
 ---
@@ -78,13 +78,12 @@ $client->addSubscriber($cachePlugin);
 The cache plugin will now intercept and cache `GET` and `HEAD` requests made by the
 client.
 
-### CallbackCanCacheStrategy
+### Custom Caching Decisions
 
 So what if, now that you're caching each `GET` request, there's a request or
 requests you don't want cached? Guzzle makes solving that problem trivial by
 allowing for "[custom caching decisions](http://docs.guzzlephp.org/en/latest/plugins/cache-plugin.html#custom-caching-decision)",
-but the documentation on how to make those custom decisions is 
-[decidedly light](http://docs.guzzlephp.org/en/latest/plugins/cache-plugin.html#custom-caching-decision).
+but the documentation on how to make those custom decisions is decidedly light.
 
 > ". . . you can set a custom can_cache object on the constructor of the
 > CachePlugin and provide a Guzzle\Plugin\Cache\CanCacheInterface object. You
