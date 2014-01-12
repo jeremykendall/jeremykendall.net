@@ -3,7 +3,7 @@ layout: post
 title: "PHP Password Hashing: A Dead Simple Implementation"
 date: 2014-01-04 01:55:10 -0600
 comments: true
-categories: ["PHP", "Security", "Passwords", "Password Validator"]
+categories: ["PHP", "security", "passwords", "Password Validator"]
 ---
 
 #### [UPDATE: Added a new section at the end of the post]
@@ -111,9 +111,10 @@ $options = array(
 $validator->setOptions($options);
 ```
 
-**IMPORTANT**: If you're using a `cost` other than the default cost of `10`,
-your passwords will be rehashed with a cost of `10` *unless* you set the cost
-using `PasswordValidator::setOptions()`.
+**IMPORTANT**: `PasswordValidator` uses a default cost of `12`. If your
+existing hash implementation requires a different cost, make sure to specify it
+using `PasswordValidator::setOptions()`. If you do not do so, all of your
+passwords will be rehashed using a cost of `10`.
 
 ### Rehashing
 
@@ -259,7 +260,7 @@ install`).
 
 If you're not already running PHP 5.5+, you should run `version-check` to
 ensure your version of PHP is capable of using password-compat, the userland
-implementation of the PHP password hash functions.  Run `./bin/version-check`
+implementation of the PHP password hash functions.  Run `./vendor/bin/version-check`
 from the root of your project. The result of the script is pass/fail.
 
 ### cost-check
@@ -267,13 +268,13 @@ from the root of your project. The result of the script is pass/fail.
 The default `cost` used by `password_hash` is 10.  This may or may not be
 appropriate for your production hardware, and it's entirely likely you can use
 a higher cost than the default. `cost-check` is based on the [finding a good
-cost][8] example in the PHP documentation. Simply run `./bin/cost-check` from the command line and an appropriate cost will be returned.
+cost][8] example in the PHP documentation. Simply run `./vendor/bin/cost-check` from the command line and an appropriate cost will be returned.
 
 **NOTE**: The default time target is 0.2 seconds.  You may choose a higher or lower 
 target by passing a float argument to `cost-check`, like so:
 
 ``` bash
-$ ./bin/cost-check 0.4
+$ ./vendor/bin/cost-check 0.4
 Appropriate 'PASSWORD_DEFAULT' Cost Found:  13
 ```
 
