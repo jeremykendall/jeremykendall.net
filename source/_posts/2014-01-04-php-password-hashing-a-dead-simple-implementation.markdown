@@ -111,7 +111,7 @@ $options = array(
 $validator->setOptions($options);
 ```
 
-**IMPORTANT**: `PasswordValidator` uses a default cost of `12`. If your
+**IMPORTANT**: `PasswordValidator` uses a default cost of `10`. If your
 existing hash implementation requires a different cost, make sure to specify it
 using `PasswordValidator::setOptions()`. If you do not do so, all of your
 passwords will be rehashed using a cost of `10`.
