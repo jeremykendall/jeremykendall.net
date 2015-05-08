@@ -50,7 +50,7 @@ _(I informed Piedmont that I would be making this complaint public here on my bl
 
 By yesterday at 10 am CST, I had spoken to Piedmont customer service, sent them an email, written this blog post, and pinged them on both their [Twitter account](https://twitter.com/PiedmontNG) and their [Facebook page](https://www.facebook.com/PiedmontNG).  I kept an eye on my phone, email, and social networks all day, finally giving up around 5 pm.  Finally, at 6:41 pm CST, almost three hours *after* Piedmont customer service closed for the weekend, I received [this reply via Twitter](https://twitter.com/PiedmontNG/status/275037051588599808):
 
-{% tweet https://twitter.com/PiedmontNG/status/275037051588599808 %}
+{% twitter oembed https://twitter.com/PiedmontNG/status/275037051588599808 %}
 
 Piedmont had six hours to touch base with us and resolve the problem.  I pinged them in every possible way, making what I felt was a reasonable request for restoration of services.  Rather than jumping on the problem and restoring our service, we were contacted after hours and told that customer service has been "made aware".  Thanks, but I'd already covered that one, and they won't be open until Monday morning anyhow.  Not impressed.
 
