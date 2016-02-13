@@ -166,7 +166,7 @@ after :updated, 'deploy:composer_install'
 
 Of course, as soon as I got it working, Peter Mitchell sent me this tweet:
 
-{% tweet https://twitter.com/peterjmit/status/404324240339771392 %}
+{% twitter oembed https://twitter.com/peterjmit/status/404324240339771392 %}
 
 I haven't yet replaced my hacked version with the gem, but I'll use it
 as soon as I do any refactoring.

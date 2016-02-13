@@ -6,7 +6,7 @@ comments: true
 categories: [PHP, GitHub, "Internet Fame"]
 ---
 
-{% tweet https://twitter.com/JeremyKendall/status/368341245695115264 %}
+{% twitter oembed https://twitter.com/JeremyKendall/status/368341245695115264 %}
 
 Thanks to yesterday's link love from [PHPDeveloper](http://phpdeveloper.org/news/19985),
 I've made both the [Trending PHP Developer](https://github.com/trending/developers?l=php)
