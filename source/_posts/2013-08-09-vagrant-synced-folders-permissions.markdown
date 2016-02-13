@@ -74,7 +74,7 @@ changing the web user to the vagrant user.  Bad idea?  Security problem?  Not on
 VM it ain't, and that's good enough for me. Big thanks to Chris Tankersley for all
 the help getting this one figured out.
 
-{% tweet https://twitter.com/JeremyKendall/status/383416513715523584 %}
+{% twitter oembed https://twitter.com/JeremyKendall/status/383416513715523584 %}
 
 Chris and I both put together gists, and [this is how I'm currently doing it](https://github.com/jeremykendall/flaming-archer/blob/develop/manifests/default.pp#L41-L53)
 in Flaming Archer, but probably the best method for changing the apache user
