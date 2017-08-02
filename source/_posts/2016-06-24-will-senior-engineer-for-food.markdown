@@ -6,6 +6,16 @@ comments: true
 categories: ["Job Hunt", "personal"]
 ---
 
+**UPDATE:** Sorry companies that didn't snatch me up while I was available, but
+I'm no longer on the market! As of August 2016 I'm working as a Senior Software
+Engineer at [Alegion](https://alegion.com/). I'm stoked to be a part of an
+amazing company and a member of one of the best teams I've ever had the
+pleasure to work with.
+
+{% img /images/i_got_the_job.gif %}
+
+------
+
 After two amazing, challenging, crazy, exhausting years with [Graph Story](http://graphstory.com/),
 I've decided that it's time to find a new challenge and a new workplace to call home.
 
